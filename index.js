@@ -1,13 +1,14 @@
 let  total = 0 ;
 
 //number  click  handler 
-let prev_op , curr_op ;
-let  num1 , num2 ;
+let operator ;
+let  num1 = ""  ;
 
+let  isNewNumber = true ;
 let  inp  =  document.querySelector('.inp') ;
 document.querySelectorAll('.num').forEach(button => button.addEventListener('click',(e)=>{
         
-        if(num1){
+        if(!isNewNumber){
                 num1 += e.target.textContent ;
                 inp.value += e.target.textContent ;
         }
@@ -15,7 +16,7 @@ document.querySelectorAll('.num').forEach(button => button.addEventListener('cli
                 num1 =  e.target.textContent ;
                 inp.value = e.target.textContent ;
         } 
-
+        isNewNumber = false ;
         // inp.value += e.target.textContent ;
         console.log(num1) ;
 }))
@@ -24,88 +25,63 @@ document.querySelectorAll('.num').forEach(button => button.addEventListener('cli
 
 document.querySelectorAll('.operator').forEach(button => button.addEventListener('click' , (e)=>{
         
-       
+        isNewNumber = true ;
         console.log('operator :' , e.target.textContent) ;
         inp.value = e.target.textContent  ;
-        if(prev_op != null){
-               op_handler(prev_op);
-        }
-        if(prev_op === null){
-                prev_op = e.target.textContent ;
-                curr_op = e.target.textContent ;
-                total = num1 ;
-                num1 = null ;
+        if(operator != null){
+               op_handler(operator);
+               
         }
         else{
-                prev_op = curr_op ;
-                curr_op = e.target.textContent ;
+                total = Number(num1) ;
         }
 
-        
+        // else{
+        //         prev_op = curr_op ;
+        //         curr_op = e.target.textContent ;
+        // }
+        operator =  e.target.textContent ;
+        num1 = ""
         
         
 }))
 
 
-function op_handler(prev_op){
-        switch (prev_op) {
+function op_handler(operator){
+        switch (operator) {
                 case "+":
                   total += Number(num1) ;
-                  num1 = null ; 
+                  num1 = "" ; 
                         break;
                 
                 case "-":
                   total -= Number(num1) ;
-                  num1 = null ;
+                  num1 = "" ;
                     
                         break;
 
                 case "*":
                   
                   total *= Number(num1) ;
-                  num1 = null ;
-                   mul(num1);   
+                  num1 = "" ;
+                     
                         break;
 
                 case "/":
                    total /= Number(num1) ;
-                  num1 = null ;    
+                  num1 = "" ;    
                         break;
                 
                 case "C":
-                    num1 = null ;   
+                    num1 = "" ;   
                         break;
 
                 case "=":
+                        inp.value = total ;
                         console.log(total) ;
                         break;
 
         }
         
 }
-
-// function add(num1) {
-//         if(prev_op != null){
-//                 total
-//         }
-//         if(total == 0 && prev_operator == null) total =  num1 ;
-//         else total += num1 ;
-//         inp.value =  total ;
-// }
-
-// function sub(num1) {
-//         if(total == 0 ) total =  num1 ;
-//         else total -= num1 ;
-// }
-
-// function mul(num1) {
-//         if(total == 0 ) total =  num1 ;
-//         else total *= num1 ;
-
-// }
-
-// function div(num1) {
-//         if(total == 0 ) total =  num1 ;
-//         else total /= num1 ;
-// }
 

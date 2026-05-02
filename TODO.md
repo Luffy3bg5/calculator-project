@@ -1,6 +1,10 @@
 #My  tasks 
 to tick  down  the  checkboxes  use  crtl + shift + v 
 
-- [x] do  this 
-- [x] 2nd  task 
-- [x] 3rd  task 
+-[ ] Handle number input properly
+-[ ] Track calculator state cleanly
+-[ ] Fix operator logic flow
+-[ ] Improve op_handler
+-[ ] Handle "=" correctly
+-[ ] Update display properly
+-[ ] Handle edge cases
