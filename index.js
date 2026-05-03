@@ -26,76 +26,82 @@ document.querySelectorAll('.num').forEach(button => button.addEventListener('cli
 document.querySelectorAll('.operator').forEach(button => button.addEventListener('click' , (e)=>{
         
         isNewNumber = true ;
-        console.log('operator :' , e.target.textContent) ;
+
+        let  newOperator = e.target.textContent  ;
+
+        console.log('operator :' , newOperator) ;
         // - >   operator = e.target.textContent  ;
         // this  happens  before the  previous  one is  calculated  
-        if(operator != null){
-                 if(operator==="="){
-                        inp.value = total ;
-                        console.log(total) ;
-                        return  ;
-                        
+        
+        
+        if(newOperator ==="="){
+                if(operator !== null){
+                        op_handler(operator) ;
                         // break  only works  in the  loops  and  the  switch  statements  
                         //other wise  the  logic  will  break  here . 
-
                  }
-               if(total === 0){
-                total = Number(num1) ;
-               }
-               else op_handler(operator);
+                 inp.value = total ;
+                        operator = null ;
+                        num1 = "" ;
+                        console.log(total) ;
+                        return  ;
+               
+        //        else op_handler(operator);
                
         }
+        if(operator !== null){
+                op_handler(operator) ;
+        }
+        else{
+                total = Number(num1) ;
+               }
         
+        operator = newOperator ;
+        num1 = "" ;
 
         // else{
         //         prev_op = curr_op ;
         //         curr_op = e.target.textContent ;
         // }
-        if(operator === "="){
-                 inp.value = total ;
-                 operator = null ;
-                 num1 = "" ;
-        }else{
-            inp.value = operator  ;
-            num1 = "" ;
-        }
-        
-        
+       
+ 
         
 }))
 
 
 function op_handler(operator){
+        if(num1 === "") return  ;
+        let   current = Number(num1) ;
         switch (operator) {
                 case "+":
-                  total += Number(num1) ;
+                  total += current  ;
                   num1 = "" ; 
                         break;
                 
                 case "-":
-                  total -= Number(num1) ;
+                  total -= current  ;
                   num1 = "" ;
                     
                         break;
 
                 case "*":
                   
-                  total *= Number(num1) ;
+                  total *= current  ;
                   num1 = "" ;
                      
                         break;
 
                 case "/":
+                        if(current  === 0){
+                                alert("Cannot  divide  by 0  ");
+                                return ;
+                        }
                    total /= Number(num1) ;
-                  num1 = "" ;    
+                   num1 = "" ;    
                         break;
-                
-                case "C":
-                    num1 = "" ;   
-                        break;
-
 
         }
+        num1 = "" ;
         
 }
 
