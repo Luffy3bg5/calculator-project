@@ -33,7 +33,13 @@ document.querySelectorAll('.operator').forEach(button => button.addEventListener
         console.log('operator :' , newOperator) ;
         // - >   operator = e.target.textContent  ;
         // this  happens  before the  previous  one is  calculated  
-        
+         if(newOperator === "C"){
+                total = 0 ;
+                num1 = "" ;
+                inp.value = num1  ;
+                operator = null ;
+                return ;
+        }
         
         if(newOperator ==="="){
                 if(operator !== null){
@@ -73,6 +79,7 @@ document.querySelectorAll('.operator').forEach(button => button.addEventListener
 function op_handler(operator){
         if(num1 === "") return  ;
         let   current = Number(num1) ;
+       
         switch (operator) {
                 case "+":
                   total += current  ;
@@ -95,6 +102,7 @@ function op_handler(operator){
                 case "/":
                         if(current  === 0){
                                 alert("Cannot  divide  by 0  ");
+                                num1 = null ;
                                 return ;
                         }
                    total /= Number(num1) ;
@@ -102,6 +110,7 @@ function op_handler(operator){
                         break;
 
         }
+        
         num1 = "" ;
         
 }
