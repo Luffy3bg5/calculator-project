@@ -60,7 +60,10 @@ document.querySelectorAll('.operator').forEach(button => button.addEventListener
                 op_handler(operator) ;
         }
         else{
-                total = Number(num1) ;
+                if(num1 != ""){
+                        total = Number(num1) ;
+                }
+                
                }
         
         operator = newOperator ;
@@ -76,11 +79,11 @@ document.querySelectorAll('.operator').forEach(button => button.addEventListener
 }))
 
 
-function op_handler(operator){
+function op_handler(op){
         if(num1 === "") return  ;
         let   current = Number(num1) ;
        
-        switch (operator) {
+        switch (op) {
                 case "+":
                   total += current  ;
                   num1 = "" ; 
@@ -102,11 +105,13 @@ function op_handler(operator){
                 case "/":
                         if(current  === 0){
                                 alert("Cannot  divide  by 0  ");
-                                num1 = null ;
+
+                                num1 = "" ;
+                                operator =null ;
+                                inp.value = "";
                                 return ;
                         }
-                   total /= Number(num1) ;
-                   num1 = "" ;    
+                   total /= current ;   
                         break;
 
         }
