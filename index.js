@@ -1,22 +1,22 @@
-let  total = 0 ;
-
-//number  click  handler 
-let operator ;
+let  total = 0 ; 
+let operator = null ;
 let  num1 = ""  ;
-
 let  isNewNumber = true ;
+
+
 let  inp  =  document.querySelector('.inp') ;
 document.querySelectorAll('.num').forEach(button => button.addEventListener('click',(e)=>{
         
         if(!isNewNumber){
                 num1 += e.target.textContent ;
                 inp.value += e.target.textContent ;
+                isNewNumber = false ;
         }
         else {
                 num1 =  e.target.textContent ;
                 inp.value = e.target.textContent ;
         } 
-        isNewNumber = false ;
+        
         // inp.value += e.target.textContent ;
         console.log(num1) ;
 }))
@@ -27,7 +27,8 @@ document.querySelectorAll('.operator').forEach(button => button.addEventListener
         
         isNewNumber = true ;
         console.log('operator :' , e.target.textContent) ;
-        operator = e.target.textContent  ;
+        // - >   operator = e.target.textContent  ;
+        // this  happens  before the  previous  one is  calculated  
         if(operator != null){
                  if(operator==="="){
                         inp.value = total ;
