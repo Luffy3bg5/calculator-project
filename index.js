@@ -10,13 +10,14 @@ document.querySelectorAll('.num').forEach(button => button.addEventListener('cli
         if(!isNewNumber){
                 num1 += e.target.textContent ;
                 inp.value += e.target.textContent ;
-                isNewNumber = false ;
+                
         }
         else {
                 num1 =  e.target.textContent ;
                 inp.value = e.target.textContent ;
         } 
         
+        isNewNumber = false ;
         // inp.value += e.target.textContent ;
         console.log(num1) ;
 }))
