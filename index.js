@@ -27,21 +27,38 @@ document.querySelectorAll('.operator').forEach(button => button.addEventListener
         
         isNewNumber = true ;
         console.log('operator :' , e.target.textContent) ;
-        inp.value = e.target.textContent  ;
+        operator = e.target.textContent  ;
         if(operator != null){
-               op_handler(operator);
+                 if(operator==="="){
+                        inp.value = total ;
+                        console.log(total) ;
+                        return  ;
+                        
+                        // break  only works  in the  loops  and  the  switch  statements  
+                        //other wise  the  logic  will  break  here . 
+
+                 }
+               if(total === 0){
+                total = Number(num1) ;
+               }
+               else op_handler(operator);
                
         }
-        else{
-                total = Number(num1) ;
-        }
+        
 
         // else{
         //         prev_op = curr_op ;
         //         curr_op = e.target.textContent ;
         // }
-        operator =  e.target.textContent ;
-        num1 = ""
+        if(operator === "="){
+                 inp.value = total ;
+                 operator = null ;
+                 num1 = "" ;
+        }else{
+            inp.value = operator  ;
+            num1 = "" ;
+        }
+        
         
         
 }))
@@ -76,10 +93,6 @@ function op_handler(operator){
                     num1 = "" ;   
                         break;
 
-                case "=":
-                        inp.value = total ;
-                        console.log(total) ;
-                        break;
 
         }
         
